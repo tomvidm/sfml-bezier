@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Clamp.hpp@"
+#include "Clamp.hpp"
 
 namespace math {
     template <typename T>
