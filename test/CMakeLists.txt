@@ -1,4 +1,4 @@
-project(sfml-bezier-tests)
+project(sfml-primitives-tests)
 
 set(TEST_SOURCES
     TrivialTest.cpp
@@ -6,17 +6,17 @@ set(TEST_SOURCES
 )
 
 include_directories(
-    ${sfmlbezier_INCLUDE_DIR}
+    ${sfmlprimitives_INCLUDE_DIR}
     ${gtest_INCLUDE_DIR}
 )
 
-message(STATUS ${sfmlbezier_INCLUDE_DIR})
+message(STATUS ${sfmlprimitives_INCLUDE_DIR})
 
-add_executable(sfml-bezier-tests
+add_executable(sfml-primitives-tests
     ${TEST_SOURCES}
 )
 
-target_link_libraries(sfml-bezier-tests
+target_link_libraries(sfml-primitives-tests
     gtest
     gtest_main
 )
