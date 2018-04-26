@@ -12,6 +12,12 @@ namespace primitives {
         }
     }
 
+    void LineStrip::setLineColor(const sf::Color& color) {
+        for (size_t i = 0; i < vertices.getVertexCount(); i++) {
+            vertices[i].color = color;
+        }
+    }
+
     void LineStrip::draw(sf::RenderTarget& target, sf::RenderStates states) const {
         states.transform *= getTransform();
         target.draw(vertices, states);

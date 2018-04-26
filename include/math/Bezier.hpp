@@ -27,7 +27,8 @@ namespace math {
             return controlPoints[0] * mtmt +
                    controlPoints[1] * 2.f * mt * t +
                    controlPoints[2] * t * t;
-        } else if (n == 4) {
+        } // special case: quadratic
+        else if (n == 4) {
             const float t2 = t * t;
             const float t3 = t2 * t;
             const float mt = 1 - t;
@@ -37,7 +38,8 @@ namespace math {
                    controlPoints[1] * 3.f * mt2 * t +
                    controlPoints[2] * 3.f * mt * t2 +
                    controlPoints[3] * t3;
-        } else {
+        } // special case: cubic 
+        else {
             T newPoint;
             for (unsigned i = 0; i < n; i++) {
                 const float bin = math::combinations(n - 1, i);
@@ -46,6 +48,6 @@ namespace math {
                 newPoint += controlPoints[i] * bin * powf(1 - t, fnmi) * powf(t, fi);
             }
             return newPoint;
-        }
+        } // general case
     }
 } // namespace math

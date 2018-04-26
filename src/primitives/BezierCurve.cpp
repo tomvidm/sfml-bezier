@@ -9,9 +9,10 @@ namespace primitives {
     BezierCurve::BezierCurve(const std::vector<sf::Vector2f>& points, const unsigned resolution)
     : m_needsUpdate(true), m_resolution(resolution), m_controlPoints(points) {
         m_vertices.setPrimitiveType(sf::PrimitiveType::LinesStrip);
-        m_vertices.resize(m_resolution);
+        m_vertices.resize(m_resolution + 1);
         m_controlPoints = points;
         m_controlPointLineStrip = new LineStrip(points);
+        m_controlPointLineStrip->setLineColor(sf::Color(128, 128, 128));
         update();
     }
 
@@ -36,7 +37,7 @@ namespace primitives {
     }
 
     void BezierCurve::constructCurve() {
-        for (size_t i = 0; i < m_resolution; i++) {
+        for (size_t i = 0; i <= m_resolution; i++) {
             const float t = static_cast<float>(i) / static_cast<float>(m_resolution);
             m_vertices[i] = sf::Vertex(
                 math::bezier<sf::Vector2f>(m_controlPoints, t),
@@ -47,7 +48,7 @@ namespace primitives {
 
     void BezierCurve::draw(sf::RenderTarget& target, sf::RenderStates states) const {
         states.transform *= getTransform();
-        target.draw(m_vertices, states);
         target.draw(*m_controlPointLineStrip, states);
+        target.draw(m_vertices, states);
     }
 } // namespace primitives
