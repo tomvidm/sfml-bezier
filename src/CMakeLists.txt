@@ -1,6 +1,7 @@
 set(SOURCES
     main.cpp
     primitives/LineStrip.cpp
+    primitives/BezierCurve.cpp
 )
 
 include_directories(

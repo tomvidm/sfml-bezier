@@ -10,10 +10,18 @@ namespace math {
     */
     template <typename T>
     T combinations(T n, T k) {
-        if (n == k) {                   // Equals 1 by definition
-            return 1; 
-        } else if (k == 0 || n < k) {   // Equals 0 by definition??
-            return 0;
+        using ulong = unsigned long;
+        static const std::vector<std::vector<ulong>> lookup = {
+            {1},
+            {1, 1},
+            {1, 2, 1},
+            {1, 3, 3, 1},
+            {1, 4, 6, 4, 1},
+            {1, 5, 10, 10, 5, 1},
+            {1, 5, 15, 20, 15, 5, 1}
+        };
+        if (n <= lookup.size() && k <= lookup[n].size()) {
+            return lookup[n][k];
         } else {                        // Proceed with calculation
             T result = n;               // Start with highest multiplier
             T d = 1;                    // Keep track of lower multipliers

@@ -21,7 +21,7 @@ TEST(MathTests, lerp_works_fine) {
 }
 
 TEST(MathTests, binomial_coefficients_are_computed_correctly) {
-    EXPECT_EQ(math::combinations<long unsigned>(4, 0), 0);
+    EXPECT_EQ(math::combinations<long unsigned>(4, 0), 1);
     EXPECT_EQ(math::combinations<long unsigned>(4, 1), 4);
     EXPECT_EQ(math::combinations<long unsigned>(4, 2), 6);
     EXPECT_EQ(math::combinations<long unsigned>(4, 3), 4);
